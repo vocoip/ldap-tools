@@ -1,0 +1,3 @@
+2025-04-09 05:19:21,742 - INFO - 成功连接到LDAP服务器: ldap://ldap.forumsys.com:389
+2025-04-09 05:19:21,743 - ERROR - 搜索用户失败: invalid attribute type department
+2025-04-09 05:19:21,745 - INFO - LDAP连接已关闭

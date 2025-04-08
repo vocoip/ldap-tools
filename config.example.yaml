@@ -1,0 +1,32 @@
+# LDAP服务器配置示例
+ldap:
+  # 服务器连接信息
+  server:
+    url: 'ldap://ldap.example.com:389'  # 替换为你的LDAP服务器地址
+    use_ssl: false                       # 如果使用SSL，设置为true
+    timeout: 30                          # 连接超时时间（秒）
+
+  # 认证信息
+  auth:
+    username: 'admin@example.com'        # 替换为你的管理员用户名
+    password: 'your-secure-password'     # 替换为你的管理员密码
+    authentication: 'NTLM'               # 认证方式：NTLM, SIMPLE, ANONYMOUS
+
+  # 搜索配置
+  search:
+    base_dn: 'DC=example,DC=com'        # 替换为你的域基础DN
+    default_filter: '(&(objectClass=user)(objectCategory=person))'  # 默认搜索过滤器
+    attributes:                          # 需要返回的属性
+      - cn                              # 通用名称
+      - mail                            # 电子邮件
+      - department                      # 部门
+      - title                           # 职位
+      - telephoneNumber                 # 电话号码
+      - manager                         # 管理者
+      - memberOf                        # 组成员
+
+  # 日志配置
+  logging:
+    level: 'INFO'                       # 日志级别：DEBUG, INFO, WARNING, ERROR
+    format: '%(asctime)s - %(levelname)s - %(message)s'
+    file: 'ldap.log'                    # 日志文件路径 
