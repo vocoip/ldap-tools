@@ -1,0 +1,42 @@
+# LDAP服务器配置
+ldap:
+  # 服务器连接信息
+  server:
+    url: 'ldap://your-ad-server:389'  # AD服务器地址，例如：ldap://dc1.company.com:389
+    use_ssl: false                     # 如果使用SSL，设置为true
+    timeout: 30                        # 连接超时时间（秒）
+
+  # 认证信息
+  # 认证方式1：使用NTLM认证（适用于Windows域环境）
+  auth:
+    username: 'administrator@company.com'  # AD用户名（域格式）
+    password: 'your-password'             # 密码
+    authentication: 'NTLM'                # 使用NTLM认证
+
+  # 认证方式2：使用DN格式（适用于非Windows环境）
+  # auth:
+  #   username: 'CN=Administrator,CN=Users,DC=company,DC=com'  # AD管理员DN
+  #   password: 'your-password'          # 管理员密码
+  #   authentication: 'SIMPLE'           # AD通常使用SIMPLE认证
+
+  # 搜索配置
+  search:
+    base_dn: 'DC=company,DC=com'      # AD域的基础DN
+    default_filter: '(&(objectClass=user)(objectCategory=person))'  # AD用户搜索过滤器
+    attributes:                        # AD常用属性
+      - cn                            # 通用名称
+      - sAMAccountName               # Windows登录名
+      - mail                         # 电子邮件
+      - department                   # 部门
+      - title                        # 职位
+      - telephoneNumber              # 电话号码
+      - manager                      # 管理者
+      - memberOf                     # 组成员
+      - distinguishedName           # 完整DN
+      - userPrincipalName           # 用户主体名称
+
+  # 日志配置
+  logging:
+    level: 'INFO'                    # 日志级别：DEBUG, INFO, WARNING, ERROR
+    format: '%(asctime)s - %(levelname)s - %(message)s'
+    file: 'ldap.log'                # 日志文件路径 

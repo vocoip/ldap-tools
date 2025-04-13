@@ -1,3 +1,8 @@
 2025-04-09 05:19:21,742 - INFO - 成功连接到LDAP服务器: ldap://ldap.forumsys.com:389
 2025-04-09 05:19:21,743 - ERROR - 搜索用户失败: invalid attribute type department
 2025-04-09 05:19:21,745 - INFO - LDAP连接已关闭
+2025-04-09 06:15:16,962 - INFO - 成功连接到LDAP服务器: ldap://ldap.forumsys.com:389
+2025-04-09 06:15:16,963 - ERROR - 搜索用户失败: invalid attribute type department
+2025-04-09 06:15:16,963 - INFO - LDAP连接已关闭
+2025-04-09 06:17:11,201 - ERROR - 连接LDAP服务器失败: NTLM needs domain\username and a password
+2025-04-09 07:16:58,325 - ERROR - 连接LDAP服务器失败: NTLM needs domain\username and a password
