@@ -1,2 +1,11 @@
+# LDAP相关
 ldap3>=2.9.1
+
+# 配置文件处理
 PyYAML>=6.0.1
+
+# 日志处理
+python-json-logger>=2.0.7
+
+# 工具包
+six>=1.16.0

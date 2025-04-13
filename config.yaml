@@ -1,0 +1,30 @@
+# LDAP服务器配置
+ldap:
+  # 服务器连接信息
+  server:
+    url: 'ldap://ldap.forumsys.com:389'  # 测试LDAP服务器
+    use_ssl: false                        # 不使用SSL
+    timeout: 30                           # 连接超时时间（秒）
+
+  # 认证信息
+  auth:
+    username: 'cn=read-only-admin,dc=example,dc=com'  # 测试账号
+    password: 'password'                               # 测试密码
+    authentication: 'SIMPLE'                           # 使用简单认证
+
+  # 搜索配置
+  search:
+    base_dn: 'dc=example,dc=com'                      # 测试域
+    default_filter: '(objectClass=person)'             # 搜索所有用户
+    attributes:                                        # 需要返回的属性
+      - cn                                            # 通用名称
+      - mail                                          # 电子邮件
+      - department                                    # 部门
+      - title                                         # 职位
+      - telephoneNumber                               # 电话号码
+
+  # 日志配置
+  logging:
+    level: 'INFO'                                     # 日志级别
+    format: '%(asctime)s - %(levelname)s - %(message)s'
+    file: 'ldap.log'                                  # 日志文件路径 

@@ -1,0 +1,56 @@
+# Active Directory配置示例
+ldap:
+  # AD服务器连接信息
+  server:
+    url: 'ldap://dc.your-domain.com:389'  # AD域控制器地址
+    use_ssl: true                         # 建议启用SSL
+    timeout: 30                           # 连接超时时间（秒）
+
+  # AD认证信息
+  auth:
+    # 方式1：使用域账号格式（推荐）
+    username: 'username@your-domain.com'   # 域用户名格式
+    # 方式2：使用SAM账号格式
+    # username: 'DOMAIN\\username'         # SAM账号格式
+    password: 'your-password'             # 用户密码
+    authentication: 'NTLM'                # AD推荐使用NTLM认证
+
+  # AD搜索配置
+  search:
+    base_dn: 'DC=your-domain,DC=com'     # AD域的DN
+    # AD用户搜索过滤器示例
+    default_filter: '(&(objectClass=user)(objectCategory=person)(!userAccountControl:1.2.840.113556.1.4.803:=2))'  # 只搜索启用的用户账号
+    attributes:                           # AD常用属性
+      - distinguishedName                # 用户DN
+      - sAMAccountName                   # Windows登录名
+      - userPrincipalName               # 用户主体名称（邮箱格式）
+      - mail                            # 电子邮件
+      - displayName                     # 显示名称
+      - givenName                       # 名
+      - sn                              # 姓
+      - cn                              # 通用名称
+      - name                            # 完整名称
+      - department                      # 部门
+      - title                           # 职位
+      - company                         # 公司
+      - manager                         # 经理
+      - memberOf                        # 所属组
+      - whenCreated                     # 创建时间
+      - whenChanged                     # 修改时间
+      - lastLogon                       # 最后登录时间
+      - userAccountControl              # 账户控制标志
+      - telephoneNumber                 # 电话
+      - mobile                          # 手机
+      - physicalDeliveryOfficeName      # 办公室
+
+  # 日志配置
+  logging:
+    level: 'INFO'                        # 日志级别：DEBUG, INFO, WARNING, ERROR
+    format: '%(asctime)s - %(levelname)s - %(message)s'
+    file: 'ad.log'                       # AD专用日志文件
+
+  # AD特定设置
+  ad_settings:
+    page_size: 1000                      # 分页大小，用于大型AD环境
+    chase_referrals: false               # 是否跟随引用
+    check_names: true                    # 检查名称格式 
